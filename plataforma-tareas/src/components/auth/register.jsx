@@ -35,9 +35,9 @@ const Register = () => {
       <div className="flex w-full max-w-4xl bg-white rounded-lg shadow-md overflow-hidden">
         {/* Columna izquierda con diseño */}
         <div className="w-1/2 bg-gradient-to-r from-blue-500 to-blue-400 flex flex-col justify-center items-center text-white p-8">
-          <h1 className="text-4xl font-bold mb-4">BLUEBACK</h1>
+          <h1 className="text-4xl font-bold mb-4">TAREASCOL</h1>
           <p className="text-sm text-center">
-            Únete a nuestra comunidad para gestionar tus tareas y organizar tu día a día con facilidad.
+            Únete a nuestra plataforma para gestionar tus tareas y organizar tu día a día con facilidad.
           </p>
         </div>
 
