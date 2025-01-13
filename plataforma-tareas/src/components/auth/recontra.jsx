@@ -14,18 +14,18 @@ const RecuperarContraseña = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-
+    
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/recuperar-contrasena`, {
+            const response = await fetch('http://localhost:5000/api/recuperar-contrasena', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ email }),
             });
-
+    
             const data = await response.json();
-
+    
             if (response.ok) {
                 setMessage('Correo de recuperación enviado');
             } else {
@@ -36,7 +36,7 @@ const RecuperarContraseña = () => {
             console.error('Error:', error);
         }
     };
-
+    
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
             <div className="flex w-full max-w-4xl bg-white rounded-lg shadow-md overflow-hidden">

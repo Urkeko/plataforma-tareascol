@@ -16,7 +16,7 @@ const TaskModal = ({ task, onClose, onSave }) => {
             setTag(task.tag);
             setDate(task.date);
             setAssignees(task.assignees);
-            setColumn(task.column);  // Establecer la categoría de la tarea al editar
+            setColumn(task.column);  // categoría de la tarea al editar
         }
     }, [task]);
 
@@ -29,10 +29,10 @@ const TaskModal = ({ task, onClose, onSave }) => {
             tag, 
             date, 
             assignees, 
-            column  // Se guarda la categoría en la tarea
+            column  
         };
-        onSave(newTask);  // Llama a la función onSave con la tarea nueva o editada
-        onClose();  // Cierra el modal después de guardar
+        onSave(newTask);  
+        onClose();  
     };
 
     return (

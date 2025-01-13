@@ -1,6 +1,38 @@
 import React, { useState } from 'react';
 import { PlusIcon } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
+
+
+const addTask = async () => {
+  try {
+    // Enviar la tarea al backend
+    const response = await axios.post('http://localhost:3000/api/tasks', {
+      title: newTask.title,
+      description: newTask.description,
+      tag: newTask.tag,
+      due_date: newTask.date,
+      column: newTask.column,
+    });
+
+    
+    const createdTask = response.data;
+
+    
+    setColumns((prev) => ({
+      ...prev,
+      [newTask.column]: {
+        ...prev[newTask.column],
+        tasks: [...prev[newTask.column].tasks, createdTask],
+      },
+    }));
+
+    closeModal();
+  } catch (error) {
+    console.error('Error al agregar tarea:', error);
+  }
+};
 const TaskBoard = () => {
   const [columns, setColumns] = useState({
     planned: { title: 'Planificada', tasks: [] },
@@ -21,6 +53,8 @@ const TaskBoard = () => {
   const [users, setUsers] = useState(['AH', 'JD', 'KM']);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
+
+  const navigate = useNavigate();
 
   const openModal = () => {
     setEditingTask(null);
@@ -146,12 +180,17 @@ const TaskBoard = () => {
     setIsModalOpen(true);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('authToken');  
+    window.location.reload();  
+  };
+
   return (
     <div className="min-h-screen bg-white p-6">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-xl font-bold">Panel de Tareas</h1>
         <button
-          onClick={() => alert('Has cerrado sesión.')}
+          onClick={handleLogout}  
           className="bg-indigo-600 text-white px-4 py-2 rounded-md shadow hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         >
           Cerrar sesión
